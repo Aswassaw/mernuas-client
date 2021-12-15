@@ -33,7 +33,7 @@ export default function Navbar() {
             <>
               <ul className='navbar-nav ms-auto'>
                 <Menu title='Login' href='/login' isActive />
-                <Menu title='Create An Account' href='/register' />
+                <Menu title='Create Account' href='/register' />
               </ul>
             </>
           )}
