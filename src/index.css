@@ -4,6 +4,22 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+@media (max-width: 349px) {
+  .mini-hide {
+    display: none !important;
+  }
+
+  .mini-show {
+    display: block !important;
+  }
+}
+
+@media (max-width: 299px) {
+  .super-mini-hide {
+    display: none !important;
+  }
 }
