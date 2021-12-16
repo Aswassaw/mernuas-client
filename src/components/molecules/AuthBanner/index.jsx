@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 function AuthBanner({ title, textLink, href, bannerBg }) {
   return (
-    <div className='col-md-6 col-lg-7 p-0 d-none d-md-block'>
+    <div className='col-md-7 col-lg-8 p-0 d-none d-md-block'>
       <div
         className='banner'
         style={{
