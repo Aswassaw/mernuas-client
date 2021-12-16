@@ -1,0 +1,11 @@
+@media (max-width: 349px) {
+  .mini-hide {
+    display: none;
+  }
+}
+
+@media (max-width: 299px) {
+  .super-mini-hide {
+    display: none;
+  }
+}

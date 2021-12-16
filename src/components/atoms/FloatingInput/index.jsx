@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 
 function FloatingInput({ label, type, name, ...rest }) {
   return (
-    <div class='form-floating mb-3'>
-      <input type={type} class='form-control' name={name} id={name} placeholder={label} {...rest} />
-      <label for={name}>{label}</label>
+    <div className='form-floating mb-3'>
+      <input type={type} className='form-control' name={name} id={name} placeholder={label} {...rest} />
+      <label htmlFor={name}>{label}</label>
     </div>
   );
 }

@@ -11,10 +11,10 @@
 }
 
 .banner .title {
-  -webkit-text-stroke: 1.7px white;
+  -webkit-text-stroke: 1.4px rgb(231, 231, 231);
   letter-spacing: 3px;
-  color: #193498;
-  text-shadow: 4.5px 4.5px #0e1d53;
+  color: #6549b3;
+  text-shadow: 4.5px 4.5px #240f5e;
 }
 
 .banner a {

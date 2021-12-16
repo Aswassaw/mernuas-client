@@ -5,10 +5,10 @@ import PropTypes from "prop-types";
 
 function AuthBanner({ title, textLink, href }) {
   return (
-    <div className='col-7 p-0'>
+    <div className='col-md-6 col-lg-7 p-0 d-none d-md-block'>
       <div className='banner'>
         <div className='d-flex flex-column w-100 h-100 justify-content-center align-items-center'>
-          <h2 className='display-5 text-center fw-bold title'>
+          <h2 className='display-5 text-center fw-bold mx-3 title'>
             {title}
           </h2>
           <Link className='btn btn-lg text-light px-4 mt-2' to={href}>

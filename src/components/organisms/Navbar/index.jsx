@@ -8,7 +8,10 @@ export default function Navbar() {
   const isAuthenticate = false;
 
   return (
-    <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
+    <nav
+      className='navbar navbar-expand-lg navbar-dark'
+      style={{ backgroundColor: "#371691" }}
+    >
       <div className='container-lg'>
         <Link className='navbar-brand' to='/'>
           Mernuas
