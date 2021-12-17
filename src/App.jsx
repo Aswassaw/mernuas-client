@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Provider } from "react-redux";
-import setAuthToken from "./utils/setAuthToken";
-import store from "./redux/store";
+import { useDispatch, useSelector } from "react-redux";
 import { authUser } from "./redux/actions/auth";
 
 // pages & components
+import Auth from "./middlewares/Auth"; // middleware component
 import Landing from "./pages/Landing";
 import Home from "./pages/Home";
 import Navbar from "./components/organisms/Navbar";
@@ -14,36 +13,61 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 
 export default function App() {
+  const { isAuthenticated, authIsReady } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    store.dispatch(authUser());
-  }, []);
+    dispatch(authUser());
+  }, [dispatch]);
 
   return (
-    <div>
-      <Provider store={store}>
+    <>
+      {/* jika proses authentikasi belum selesai */}
+      {!authIsReady && (
+        <div>
+          <h1>Loading...</h1>
+        </div>
+      )}
+
+      {/* jika proses authentication telah selesai */}
+      {authIsReady && (
         <BrowserRouter>
           <Routes>
             {/* public routes */}
             <Route
               path='/'
               element={
-                <>
+                <Auth isAuthenticated={isAuthenticated}>
                   <Navbar />
                   <Landing />
-                </>
+                </Auth>
               }
             />
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
+            <Route
+              path='/login'
+              element={
+                <Auth isAuthenticated={isAuthenticated}>
+                  <Login />
+                </Auth>
+              }
+            />
+            <Route
+              path='/register'
+              element={
+                <Auth isAuthenticated={isAuthenticated}>
+                  <Register />
+                </Auth>
+              }
+            />
 
             {/* private routes */}
             <Route
               path='/home'
               element={
-                <>
+                <Auth isAuthenticated={isAuthenticated} protect>
                   <Navbar />
                   <Home />
-                </>
+                </Auth>
               }
             />
 
@@ -51,7 +75,7 @@ export default function App() {
             <Route path='*' element={<NotFound />} />
           </Routes>
         </BrowserRouter>
-      </Provider>
-    </div>
+      )}
+    </>
   );
 }

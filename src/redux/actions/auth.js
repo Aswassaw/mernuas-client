@@ -1,8 +1,5 @@
 import axios from "axios";
-import {
-  AUTH_SUCCESS,
-  AUTH_FAILED,
-} from "./types";
+import { AUTH_SUCCESS, AUTH_FAILED } from "./types";
 import { API_URL } from "../../utils/constant";
 import setAuthToken from "../../utils/setAuthToken";
 
