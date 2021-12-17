@@ -1,11 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function FloatingInput({ label, type, name, ...rest }) {
+function FloatingInput({ label, name, error = null, ...rest }) {
   return (
     <div className='form-floating mb-3'>
-      <input type={type} className='form-control' name={name} id={name} placeholder={label} {...rest} />
+      <input
+        className='form-control'
+        name={name}
+        id={name}
+        placeholder={label}
+        {...rest}
+      />
       <label htmlFor={name}>{label}</label>
+      {error && <small className='text-danger'>{error}</small>}
     </div>
   );
 }
