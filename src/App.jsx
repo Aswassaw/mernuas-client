@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
+import setAuthToken from "./utils/setAuthToken";
 import store from "./redux/store";
+import { authUser } from "./redux/actions/auth";
 
 // pages & components
 import Landing from "./pages/Landing";
@@ -12,6 +14,10 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 
 export default function App() {
+  useEffect(() => {
+    store.dispatch(authUser());
+  }, []);
+
   return (
     <div>
       <Provider store={store}>
