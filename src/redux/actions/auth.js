@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   AUTH_SUCCESS,
   AUTH_FAILED,
+  LOGOUT,
 } from "./types";
 import { API_URL } from "../../utils/constant";
 import setAuthToken from "../../utils/setAuthToken";
@@ -27,3 +28,10 @@ export const authUser = () => async (dispatch) => {
     });
   }
 };
+
+// this action will logged out user
+export const logout = () => async (dispatch) => {
+  dispatch({
+    type: LOGOUT,
+  });
+}

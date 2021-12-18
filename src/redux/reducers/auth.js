@@ -44,14 +44,14 @@ const authReducer = (state = initialState, action) => {
         ...state,
         token: null,
       };
-    // case LOGOUT:
-    //   localStorage.removeItem("token");
-    //   return {
-    //     token: null,
-    //     user: null,
-    //     errors: null,
-    //     isAuthenticate: false,
-    //   };
+    case LOGOUT:
+      localStorage.removeItem("token");
+      return {
+        ...state,
+        token: null,
+        user: null,
+        isAuthenticated: false,
+      };
     default:
       return state;
   }

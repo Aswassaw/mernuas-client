@@ -2,14 +2,15 @@ import "./Navbar.css";
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { logout } from "../../../redux/actions/auth";
 
-function ProfileMenu({ userName }) {
-  const manipulateUserName = (userName) => {
-    if (userName.length > 15) {
-      return (userName = userName.slice(0, 15) + "...");
+function ProfileMenu({ name, dispatch }) {
+  const manipulateName = (name) => {
+    if (name.length > 15) {
+      return name;
     }
 
-    return userName;
+    return name;
   };
 
   return (
@@ -32,7 +33,7 @@ function ProfileMenu({ userName }) {
           />
         </div>
         <div>
-          <p className='d-inline mx-1'>{manipulateUserName(userName)}</p>
+          <p className='d-inline mx-1'>{manipulateName(name)}</p>
         </div>
       </Link>
       <ul
@@ -48,7 +49,7 @@ function ProfileMenu({ userName }) {
               height='30px'
               width='30px'
             />
-            <p className='d-inline ms-1'>{userName}</p>
+            <p className='d-inline ms-1'>{name}</p>
           </Link>
         </li>
         <div className='dropdown-divider'></div>
@@ -59,9 +60,9 @@ function ProfileMenu({ userName }) {
         </li>
         <div className='dropdown-divider'></div>
         <li>
-          <Link className='dropdown-item' to='/logout'>
+          <button className='dropdown-item' to='/logout' onClick={() => dispatch(logout())}>
             Logout
-          </Link>
+          </button>
         </li>
       </ul>
     </li>
@@ -69,7 +70,7 @@ function ProfileMenu({ userName }) {
 }
 
 ProfileMenu.propTypes = {
-  userName: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 export default ProfileMenu;
