@@ -1,21 +1,14 @@
 import "./Navbar.css";
 import React from "react";
-import cx from "classnames";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { logout } from "../../../redux/actions/auth";
 import { manipulateName } from "../../../utils/manipulateName";
 
-function ProfileMenu({ isActive, user, dispatch }) {
-  const classNavLink = cx({
-    "nav-link dropdown-toggle d-flex align-items-center": true,
-    active: isActive,
-  });
-
+function ProfileMenu({ user, dispatch }) {
   return (
     <li className='nav-item dropdown'>
       <Link
-        className={classNavLink}
+        className="nav-link dropdown-toggle d-flex align-items-center active"
         to='/'
         id='navbarDropdown'
         role='button'
@@ -40,7 +33,7 @@ function ProfileMenu({ isActive, user, dispatch }) {
         aria-labelledby='navbarDropdown'
       >
         <li>
-          <Link className='dropdown-item' to='/profile'>
+          <Link className='dropdown-item' to={`/profile/${user.slug}`}>
             <img
               src={user.avatar}
               className='rounded-circle'
@@ -67,9 +60,5 @@ function ProfileMenu({ isActive, user, dispatch }) {
     </li>
   );
 }
-
-ProfileMenu.propTypes = {
-  isActive: PropTypes.bool,
-};
 
 export default ProfileMenu;

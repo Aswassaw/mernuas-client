@@ -29,10 +29,10 @@ export default function Navbar() {
             <>
               <ul className='navbar-nav'>
                 <Menu title='Home' href='/home' isActive={location.pathname === "/home"} />
-                <Menu title='Post' href='/post' isActive={location.pathname === "/post"} />
+                <Menu title='Posts' href='/posts' isActive={location.pathname === "/posts"} />
               </ul>
               <ul className='navbar-nav ms-auto'>
-                <ProfileMenu isActive={location.pathname === "/profile"} user={user} dispatch={dispatch} />
+                <ProfileMenu user={user} dispatch={dispatch} />
               </ul>
             </>
           )}

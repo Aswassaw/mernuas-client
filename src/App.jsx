@@ -1,18 +1,19 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { authUser } from "./redux/actions/auth";
+import { ToastContainer } from "react-toastify";
 import { HashLoader } from "react-spinners";
+import { authUser } from "./redux/actions/auth";
 
 // pages & components
 import Auth from "./middlewares/Auth"; // middleware component
-import Landing from "./pages/Landing";
-import Home from "./pages/Home";
 import Navbar from "./components/organisms/Navbar";
-import NotFound from "./pages/NotFound";
-import Login from "./pages/Login";
+import Landing from "./pages/Landing";
 import Register from "./pages/Register";
-import { ToastContainer } from "react-toastify";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import Posts from "./pages/Posts";
+import NotFound from "./pages/NotFound";
 
 export default function App() {
   const { isAuthenticated, authIsReady } = useSelector((state) => state.auth);
@@ -70,6 +71,15 @@ export default function App() {
                 <Auth isAuthenticated={isAuthenticated} protect>
                   <Navbar />
                   <Home />
+                </Auth>
+              }
+            />
+            <Route
+              path='/posts'
+              element={
+                <Auth isAuthenticated={isAuthenticated} protect>
+                  <Navbar />
+                  <Posts />
                 </Auth>
               }
             />
