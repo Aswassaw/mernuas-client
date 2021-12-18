@@ -6,14 +6,14 @@ import { LOGIN_FAILED, LOGIN_SUCCESS } from "../../redux/actions/types";
 import { normalizeError } from "../../utils/normalizeError";
 import { API_URL } from "../../utils/constant";
 
-export default function useRegister() {
+export default function useLogin() {
   const [isCancelled, setIsCancelled] = useState(false);
   const [errors, setErrors] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const [finished, setFinished] = useState(false);
   const dispatch = useDispatch();
 
-  const register = async ({ name, email, password }) => {
+  const login = async ({ name, email, password }) => {
     // clean error & setpending
     setErrors(null);
     setIsPending(true);
@@ -25,17 +25,17 @@ export default function useRegister() {
       },
     };
     // set request body
-    const body = JSON.stringify({ name, email, password });
+    const body = JSON.stringify({ email, password });
 
     try {
-      // registering user
+      // logged in user
       const res = await axios.post(
-        API_URL + "/api/auth/register",
+        API_URL + "/api/auth/login",
         body,
         config
       );
 
-      // if register success
+      // if login success
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data.token,
@@ -50,7 +50,7 @@ export default function useRegister() {
     } catch (error) {
       console.error(error.message);
 
-      // if register failed
+      // if login failed
       dispatch({
         type: LOGIN_FAILED,
       });
@@ -72,5 +72,5 @@ export default function useRegister() {
     };
   }, []);
 
-  return { register, errors, isPending, finished };
+  return { login, errors, isPending, finished };
 }
