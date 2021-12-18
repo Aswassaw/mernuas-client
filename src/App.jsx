@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authUser } from "./redux/actions/auth";
+import { HashLoader } from "react-spinners";
 
 // pages & components
 import Auth from "./middlewares/Auth"; // middleware component
@@ -24,8 +25,8 @@ export default function App() {
     <>
       {/* jika proses authentikasi belum selesai */}
       {!authIsReady && (
-        <div>
-          <h1>Loading...</h1>
+        <div className="loading">
+          <HashLoader color='#371691' size={100} loading={!authIsReady} />
         </div>
       )}
 
