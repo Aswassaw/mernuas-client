@@ -12,6 +12,7 @@ import Navbar from "./components/organisms/Navbar";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import { ToastContainer } from "react-toastify";
 
 export default function App() {
   const { isAuthenticated, authIsReady } = useSelector((state) => state.auth);
@@ -33,6 +34,7 @@ export default function App() {
       {/* jika proses authentication telah selesai */}
       {authIsReady && (
         <BrowserRouter>
+          <ToastContainer />
           <Routes>
             {/* public routes */}
             <Route

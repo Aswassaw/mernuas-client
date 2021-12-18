@@ -44,7 +44,7 @@ function ProfileMenu({ name, dispatch }) {
           <Link className='dropdown-item' to='/profile'>
             <img
               src='/logo192.png'
-              class='rounded-circle'
+              className='rounded-circle'
               alt='User Avatar'
               height='30px'
               width='30px'

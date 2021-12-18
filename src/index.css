@@ -31,3 +31,8 @@ code {
   align-items: center;
   justify-content: center;
 }
+
+.btn-link {
+  text-decoration: none;
+  cursor: pointer;
+}
