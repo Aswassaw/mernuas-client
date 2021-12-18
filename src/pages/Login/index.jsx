@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+
+// components & other assets
 import FloatingInput from "../../components/atoms/FloatingInput";
 import AuthBanner from "../../components/molecules/AuthBanner";
 import loginBg from "./login.webp";

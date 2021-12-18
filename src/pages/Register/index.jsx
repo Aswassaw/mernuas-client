@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { register } from "../../redux/actions/auth";
-import { CLEAN_ERROR, SET_LOADING } from "../../redux/actions/types";
+import useRegister from "../../hooks/auth/useRegister";
+import useAuthStore from "../../hooks/auth/useAuthStore";
 
 // components & other assets
 import AuthBanner from "../../components/molecules/AuthBanner";
@@ -11,6 +9,8 @@ import FloatingInput from "../../components/atoms/FloatingInput";
 import registerBg from "./register.webp";
 
 export default function Register() {
+  const { isAuthenticated } = useAuthStore();
+  const { register, errors, isPending } = useRegister();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,32 +18,12 @@ export default function Register() {
     passwordConfirm: "",
   });
 
-  const { errors, isAuthenticated, loading } = useSelector(
-    (state) => state.auth
-  );
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    // clean error when component loaded
-    dispatch({
-      type: CLEAN_ERROR,
-    });
-  }, [dispatch]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // setloading
     const { name, email, password } = formData;
-    dispatch({
-      type: SET_LOADING,
-    });
-    // clean error
-    dispatch({
-      type: CLEAN_ERROR,
-    });
     // registering new user
-    dispatch(register({ name, email, password }));
+    register({ name, email, password });
   };
 
   const handleChange = (e) => {
@@ -117,13 +97,13 @@ export default function Register() {
                   maxLength='100'
                   required
                 />
-                {!loading && (
+                {!isPending && (
                   <button className='btn btn-primary'>Submit</button>
                 )}
-                {loading && (
-                  <button class='btn btn-primary' type='button' disabled>
+                {isPending && (
+                  <button className='btn btn-primary' type='button' disabled>
                     <span
-                      class='spinner-border spinner-border-sm'
+                      className='spinner-border spinner-border-sm'
                       role='status'
                       aria-hidden='true'
                     ></span>{" "}
