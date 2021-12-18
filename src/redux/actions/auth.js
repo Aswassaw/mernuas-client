@@ -31,6 +31,8 @@ export const authUser = () => async (dispatch) => {
 
 // this action will logged out user
 export const logout = () => async (dispatch) => {
+  setAuthToken(null);
+
   dispatch({
     type: LOGOUT,
   });

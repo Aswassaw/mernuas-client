@@ -1,22 +1,21 @@
 import "./Navbar.css";
 import React from "react";
+import cx from "classnames";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { logout } from "../../../redux/actions/auth";
+import { manipulateName } from "../../../utils/manipulateName";
 
-function ProfileMenu({ name, dispatch }) {
-  const manipulateName = (name) => {
-    if (name.length > 15) {
-      return name;
-    }
-
-    return name;
-  };
+function ProfileMenu({ isActive, user, dispatch }) {
+  const classNavLink = cx({
+    "nav-link dropdown-toggle d-flex align-items-center": true,
+    active: isActive,
+  });
 
   return (
     <li className='nav-item dropdown'>
       <Link
-        className='nav-link dropdown-toggle d-flex align-items-center'
+        className={classNavLink}
         to='/'
         id='navbarDropdown'
         role='button'
@@ -25,7 +24,7 @@ function ProfileMenu({ name, dispatch }) {
       >
         <div>
           <img
-            src='/logo192.png'
+            src={user.avatar}
             className='rounded-circle'
             alt='User Avatar'
             height='30px'
@@ -33,7 +32,7 @@ function ProfileMenu({ name, dispatch }) {
           />
         </div>
         <div>
-          <p className='d-inline mx-1'>{manipulateName(name)}</p>
+          <p className='d-inline mx-1'>{manipulateName(user.name, 15)}</p>
         </div>
       </Link>
       <ul
@@ -43,13 +42,13 @@ function ProfileMenu({ name, dispatch }) {
         <li>
           <Link className='dropdown-item' to='/profile'>
             <img
-              src='/logo192.png'
+              src={user.avatar}
               className='rounded-circle'
               alt='User Avatar'
               height='30px'
               width='30px'
             />
-            <p className='d-inline ms-1'>{name}</p>
+            <p className='d-inline ms-1'>{user.name}</p>
           </Link>
         </li>
         <div className='dropdown-divider'></div>
@@ -70,7 +69,7 @@ function ProfileMenu({ name, dispatch }) {
 }
 
 ProfileMenu.propTypes = {
-  name: PropTypes.string.isRequired,
+  isActive: PropTypes.bool,
 };
 
 export default ProfileMenu;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import useAuthStore from "../../../hooks/auth/useAuthStore";
 
@@ -9,8 +9,9 @@ import Menu from "./Menu";
 import ProfileMenu from "./ProfileMenu";
 
 export default function Navbar() {
-  const { isAuthenticated } = useAuthStore();
+  const { user, isAuthenticated } = useAuthStore();
   const dispatch = useDispatch();
+  const location = useLocation();
 
   return (
     <nav
@@ -27,11 +28,11 @@ export default function Navbar() {
           {isAuthenticated && (
             <>
               <ul className='navbar-nav'>
-                <Menu title='Home' href='/home' isActive />
-                <Menu title='Post' href='/post' />
+                <Menu title='Home' href='/home' isActive={location.pathname === "/home"} />
+                <Menu title='Post' href='/post' isActive={location.pathname === "/post"} />
               </ul>
               <ul className='navbar-nav ms-auto'>
-                <ProfileMenu name='Andry Pebrianto' dispatch={dispatch} />
+                <ProfileMenu isActive={location.pathname === "/profile"} user={user} dispatch={dispatch} />
               </ul>
             </>
           )}
@@ -40,7 +41,7 @@ export default function Navbar() {
           {!isAuthenticated && (
             <>
               <ul className='navbar-nav ms-auto'>
-                <Menu title='Login' href='/login' isActive />
+                <Menu title='Login' href='/login' />
                 <Menu title='Create Account' href='/register' />
               </ul>
             </>
