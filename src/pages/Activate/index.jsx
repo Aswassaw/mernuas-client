@@ -41,6 +41,8 @@ export default function Activate() {
 
       if (error.response) {
         createToast(normalizeError(error.response.data).other, "error");
+      } else {
+        createToast(error.message);
       }
       setIsPending(false);
     }
