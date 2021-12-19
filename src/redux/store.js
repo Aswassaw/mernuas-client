@@ -1,7 +1,10 @@
+import dotenv from "dotenv";
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import rootReducer from "./reducers";
+
+dotenv.config();
 
 const initialState = {};
 const middleWare = [thunk];
@@ -9,7 +12,10 @@ const middleWare = [thunk];
 const store = createStore(
   rootReducer,
   initialState,
-  composeWithDevTools(applyMiddleware(...middleWare))
+  process.env.NODE_ENV === "development"
+    ? composeWithDevTools(applyMiddleware(...middleWare))
+    : applyMiddleware(...middleWare)
 );
 
 export default store;
+console.log(process.env.NODE_ENV);
