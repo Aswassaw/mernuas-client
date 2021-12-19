@@ -29,11 +29,7 @@ export default function useLogin() {
 
     try {
       // logged in user
-      const res = await axios.post(
-        API_URL + "/api/auth/login",
-        body,
-        config
-      );
+      const res = await axios.post(API_URL + "/api/auth/login", body, config);
 
       // if login success
       dispatch({
@@ -59,6 +55,8 @@ export default function useLogin() {
       if (!isCancelled) {
         if (error.response) {
           setErrors(normalizeError(error.response.data));
+        } else {
+          setErrors({ other: error.message });
         }
         setIsPending(false);
       }

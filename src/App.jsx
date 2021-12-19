@@ -90,7 +90,7 @@ export default function App() {
             <Route
               path="/activate/:token"
               element={
-                <AuthRoute isAuthenticated={isAuthenticated}>
+                <AuthRoute isAuthenticated={isAuthenticated} protect>
                   <Navbar />
                   <Activate />
                 </AuthRoute>

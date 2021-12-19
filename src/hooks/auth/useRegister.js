@@ -59,6 +59,8 @@ export default function useRegister() {
       if (!isCancelled) {
         if (error.response) {
           setErrors(normalizeError(error.response.data));
+        } else {
+          setErrors({ other: error.message });
         }
         setIsPending(false);
       }
