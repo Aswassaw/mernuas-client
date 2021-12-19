@@ -23,7 +23,7 @@ export default function AlertVerified({ user }) {
       if (error.response) {
         createToast(normalizeError(error.response.data).other, "error");
       } else {
-        createToast(error.message);
+        createToast(error.message, 'error');
       }
       setIsPending(false);
     }

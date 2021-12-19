@@ -1,7 +1,7 @@
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 
-export const createToast = (message, type) => {
+export const createToast = (message, type = "default") => {
   const config = {
     position: "top-center",
     autoClose: 5000,
