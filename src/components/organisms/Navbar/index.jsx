@@ -52,7 +52,7 @@ export default function Navbar() {
             <>
               <ul className="navbar-nav ms-auto align-items-center">
                 <Menu title="Login" href="/login" isActive />
-                <div className="btn btn-sm btn-primary ms-2">
+                <div className="btn btn-sm btn-outline-primary ms-2">
                   <Menu title="Create Account" href="/register" isActive />
                 </div>
               </ul>

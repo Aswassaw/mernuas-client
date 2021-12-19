@@ -6,11 +6,13 @@ import { authUser } from "../../redux/actions/auth";
 import { API_URL } from "../../utils/constant";
 import { createToast } from "../../utils/createToast";
 import { normalizeError } from "../../utils/normalizeError";
+import useAuthStore from "../../hooks/auth/useAuthStore";
 
 export default function Activate() {
   const [isPending, setIsPending] = useState(false);
+  const { user } = useAuthStore();
   const { token } = useParams();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const activateAccount = async () => {
     setIsPending(true);
@@ -34,8 +36,6 @@ export default function Activate() {
       createToast(res.data.msg, "success");
       setIsPending(false);
       dispatch(authUser());
-
-      return <Navigate to="/home" />;
     } catch (error) {
       console.error(error);
 
@@ -45,6 +45,11 @@ export default function Activate() {
       setIsPending(false);
     }
   };
+
+  // jika akun telah terverfikasi maka redirect ke home
+  if (user.verified) {
+    return <Navigate to="/home" />;
+  }
 
   return (
     <div className="container-md my-4">
