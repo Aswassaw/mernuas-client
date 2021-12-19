@@ -78,7 +78,11 @@ export default function Register() {
               <hr />
               <form className="mt-4" onSubmit={handleSubmit}>
                 {errors && (
-                  <div className="alert alert-danger">{errors.other}</div>
+                  <>
+                    {errors.other && (
+                      <div className="alert alert-danger">{errors.other}</div>
+                    )}
+                  </>
                 )}
                 <FloatingInput
                   label="Full Name"
@@ -151,6 +155,20 @@ export default function Register() {
                     Loading...
                   </button>
                 )}
+                <button
+                  type="reset"
+                  className="btn btn-danger ms-2"
+                  onClick={() =>
+                    setFormData({
+                      name: "",
+                      email: "",
+                      password: "",
+                      passwordConfirm: "",
+                    })
+                  }
+                >
+                  Reset
+                </button>
               </form>
             </div>
           </div>

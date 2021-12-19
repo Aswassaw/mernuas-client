@@ -121,6 +121,18 @@ export default function Login() {
                     Loading...
                   </button>
                 )}
+                <button
+                  type="reset"
+                  className="btn btn-danger ms-2"
+                  onClick={() =>
+                    setFormData({
+                      email: "",
+                      password: "",
+                    })
+                  }
+                >
+                  Reset
+                </button>
               </form>
             </div>
           </div>
