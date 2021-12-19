@@ -7,12 +7,11 @@ function PasswordInput({ label, name, error = null, ...rest }) {
   return (
     <>
       <div className="mb-3">
-        <div class="input-group">
-          <div class="form-floating flex-grow-1">
+        <div className="input-group">
+          <div className="form-floating flex-grow-1">
             <input
               type={`${show ? "text" : "password"}`}
-              class="form-control"
-              name="code1"
+              className="form-control"
               name={name}
               id={name}
               placeholder={label}
@@ -21,12 +20,12 @@ function PasswordInput({ label, name, error = null, ...rest }) {
             <label for={name}>{label}</label>
           </div>
           <span
-            class="input-group-text"
+            className="input-group-text"
             onClick={() => setShow(!show)}
             style={{ cursor: "pointer" }}
           >
-            {!show && <i class="fas fa-eye"></i>}
-            {show && <i class="fas fa-eye-slash"></i>}
+            {!show && <i className="fas fa-eye"></i>}
+            {show && <i className="fas fa-eye-slash"></i>}
           </span>
         </div>
         {error && <small className="text-danger">{error}</small>}
