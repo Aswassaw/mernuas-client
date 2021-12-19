@@ -7,6 +7,7 @@ import useAuthStore from "../../hooks/auth/useAuthStore";
 import AuthBanner from "../../components/molecules/AuthBanner";
 import FloatingInput from "../../components/atoms/FloatingInput";
 import registerBg from "./register.webp";
+import Logo from "../../components/atoms/Logo";
 
 export default function Register() {
   const { isAuthenticated } = useAuthStore();
@@ -34,92 +35,101 @@ export default function Register() {
 
   // jika berhasil terauthentikasi, arahkan ke home
   if (isAuthenticated) {
-    return <Navigate to='/home' />;
+    return <Navigate to="/home" />;
   }
 
   return (
-    <div className='container-fluid'>
-      <div className='row'>
+    <div className="container-fluid">
+      <div className="row">
         <AuthBanner
-          title='Saya ingin masuk ke akun saya.'
-          textLink='Login'
-          href='/login'
+          title="Saya ingin masuk ke akun saya."
+          textLink="Login"
+          href="/login"
           bannerBg={registerBg}
         />
-        <div className='col my-4'>
-          <div className='d-flex align-items-center'>
-            <Link to='/' className='me-auto text-decoration-none fs-4'>
-              Mernuas
+        <div className="col my-4">
+          <div className="d-flex align-items-center">
+            <Link to="/" className="me-auto text-decoration-none fs-5">
+              <Logo color="#4285F4" />
+              <span className="ms-2">Mernuas</span>
             </Link>
             <Link
-              to='/login'
-              className='btn btn-outline-primary super-mini-hide'
+              to="/login"
+              className="btn btn-outline-primary super-mini-hide"
             >
               Login
             </Link>
           </div>
-          <div className='card mt-5 mx-auto' style={{ maxWidth: "450px" }}>
-            <div className='card-body'>
-              <h1 className='fs-3'>
-                <span className='mini-show d-none'>Register</span>
-                <span className='mini-hide'>Create new account</span>
+          <div className="card mt-5 mx-auto" style={{ maxWidth: "450px" }}>
+            <div className="card-body">
+              <h1 className="fs-3">
+                <span className="mini-show d-none">Register</span>
+                <span className="mini-hide">Create new account</span>
               </h1>
               <hr />
-              <form className='mt-4' onSubmit={handleSubmit}>
+              <form className="mt-4" onSubmit={handleSubmit}>
                 <FloatingInput
-                  label='Full Name'
-                  type='text'
-                  name='name'
+                  label="Full Name"
+                  type="text"
+                  name="name"
                   error={errors && errors.name}
                   value={formData.name}
                   onChange={handleChange}
-                  maxLength='50'
+                  maxLength="50"
                   required
                 />
                 <FloatingInput
-                  label='Email'
-                  type='email'
-                  name='email'
+                  label="Email"
+                  type="email"
+                  name="email"
                   error={errors && errors.email}
                   value={formData.email}
                   onChange={handleChange}
                   required
                 />
                 <FloatingInput
-                  label='Password'
-                  type='password'
-                  name='password'
+                  label="Password"
+                  type="password"
+                  name="password"
                   error={errors && errors.password}
                   value={formData.password}
                   onChange={handleChange}
-                  minLength='8'
-                  maxLength='100'
+                  minLength="8"
+                  maxLength="100"
                   required
                 />
                 {!isPending && (
                   <>
                     {/* jika proses yang melibatkan login belum selesai */}
-                    {
-                      !finished && <button className='btn btn-primary'>Submit</button>
-                    }
+                    {!finished && (
+                      <button className="btn btn-primary">Submit</button>
+                    )}
 
                     {/* jika proses yang melibatkan login telah selesai dan akan redirect */}
-                    {
-                      finished && (<button className='btn btn-primary' style={{ cursor: "not-allowed" }} disabled><span
-                        className='spinner-border spinner-border-sm'
-                        role='status'
-                        aria-hidden='true'
-                      ></span>{" "}Redirecting...</button>)
-                    }
+                    {finished && (
+                      <button
+                        className="btn btn-primary"
+                        style={{ cursor: "not-allowed" }}
+                        disabled
+                      >
+                        <span
+                          className="spinner-border spinner-border-sm"
+                          role="status"
+                          aria-hidden="true"
+                        ></span>{" "}
+                        Redirecting...
+                      </button>
+                    )}
                   </>
                 )}
                 {isPending && (
-                  <button className='btn btn-primary' type='button' disabled>
+                  <button className="btn btn-primary" type="button" disabled>
                     <span
-                      className='spinner-border spinner-border-sm'
-                      role='status'
-                      aria-hidden='true'
-                    ></span>{" "}Loading...
+                      className="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"
+                    ></span>{" "}
+                    Loading...
                   </button>
                 )}
               </form>

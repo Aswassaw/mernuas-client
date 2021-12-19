@@ -6,7 +6,7 @@ import { manipulateName } from "../../../utils/manipulateName";
 
 function ProfileMenu({ user, dispatch }) {
   return (
-    <li className='nav-item dropdown'>
+    <li className='nav-item nav-item-hover dropdown'>
       <Link
         className="nav-link dropdown-toggle d-flex align-items-center active"
         to='/'

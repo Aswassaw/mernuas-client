@@ -1,8 +1,8 @@
-.nav-item {
+.nav-item-hover {
   transition: 0.2s;
   border-radius: 5px;
 }
 
-.nav-item:hover {
+.nav-item-hover:hover {
   background-color: #220d5c;
 }

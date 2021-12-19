@@ -4,14 +4,19 @@ import { PropTypes } from "prop-types";
 import cx from "classnames";
 
 function Menu({ title, href, isActive }) {
+  const classNavItem = cx({
+    "nav-item": true,
+    "nav-item-hover": href !== "/register",
+  });
+
   const classNavLink = cx({
     "nav-link": true,
     active: isActive,
   });
 
   return (
-    <li className='nav-item'>
-      <Link className={classNavLink} aria-current='page' to={href}>
+    <li className={classNavItem}>
+      <Link className={classNavLink} aria-current="page" to={href}>
         {title}
       </Link>
     </li>

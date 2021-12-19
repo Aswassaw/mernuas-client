@@ -18,7 +18,7 @@ code {
   }
 }
 
-@media (max-width: 299px) {
+@media (max-width: 324px) {
   .super-mini-hide {
     display: none !important;
   }
