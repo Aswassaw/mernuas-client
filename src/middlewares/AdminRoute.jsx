@@ -19,7 +19,7 @@ export default function AdminRoute({
       {/* filter untuk page yang tidak dilindungi */}
       {!role !== "admin" && (
         <>
-          {!isAuthenticated && children}
+          {!isAuthenticated && <Navigate to="/login" />}
           {isAuthenticated && <Navigate to="/home" />}
         </>
       )}

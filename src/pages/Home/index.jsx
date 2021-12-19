@@ -6,7 +6,7 @@ export default function Home() {
   const { user } = useAuthStore();
 
   return (
-    <div className="container-lg my-4">
+    <div className="container-md my-4">
       <AlertVerified user={user} />
 
       <h1>Home</h1>

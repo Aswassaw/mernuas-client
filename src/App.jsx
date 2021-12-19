@@ -13,10 +13,11 @@ import Navbar from "./components/organisms/Navbar";
 import Landing from "./pages/Landing";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Activate from "./pages/Activate";
 import Home from "./pages/Home";
 import Posts from "./pages/Posts";
-import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
+import NotFound from "./pages/NotFound";
 
 export default function App() {
   const { isAuthenticated, authIsReady, role } = useAuthStore();
@@ -83,6 +84,15 @@ export default function App() {
                 <AuthRoute isAuthenticated={isAuthenticated} protect>
                   <Navbar />
                   <Posts />
+                </AuthRoute>
+              }
+            />
+            <Route
+              path="/activate/:token"
+              element={
+                <AuthRoute isAuthenticated={isAuthenticated} protect>
+                  <Navbar />
+                  <Activate />
                 </AuthRoute>
               }
             />

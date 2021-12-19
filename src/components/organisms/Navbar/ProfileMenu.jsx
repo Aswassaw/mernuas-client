@@ -38,8 +38,8 @@ function ProfileMenu({ user, dispatch }) {
               src={user.avatar}
               className='rounded-circle'
               alt='User Avatar'
-              height='30px'
-              width='30px'
+              height='50px'
+              width='50px'
             />
             <p className='d-inline ms-1'>{user.name}</p>
           </Link>

@@ -18,7 +18,7 @@ export default function Navbar() {
       className='navbar navbar-expand-lg navbar-dark'
       style={{ backgroundColor: "#371691" }}
     >
-      <div className='container-lg'>
+      <div className='container-md'>
         <Link className='navbar-brand' to='/'>
           Mernuas
         </Link>
