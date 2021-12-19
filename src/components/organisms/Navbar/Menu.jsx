@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { PropTypes } from "prop-types";
 import cx from "classnames";
 
-function Menu({ title, href, isActive }) {
+function Menu({ title, href, isActive, button = false }) {
   const classNavItem = cx({
     "nav-item": true,
-    "nav-item-hover": href !== "/register",
+    "nav-item-hover": !button,
   });
 
   const classNavLink = cx({
@@ -27,6 +27,7 @@ Menu.propTypes = {
   title: PropTypes.string.isRequired,
   href: PropTypes.string.isRequired,
   isActive: PropTypes.bool,
+  button: PropTypes.bool,
 };
 
 export default Menu;

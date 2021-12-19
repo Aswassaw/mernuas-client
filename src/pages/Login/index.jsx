@@ -8,6 +8,7 @@ import FloatingInput from "../../components/atoms/FloatingInput";
 import AuthBanner from "../../components/molecules/AuthBanner";
 import loginBg from "./login.webp";
 import Logo from "../../components/atoms/Logo";
+import PasswordInput from "../../components/atoms/PasswordInput";
 
 export default function Login() {
   const { isAuthenticated } = useAuthStore();
@@ -78,9 +79,8 @@ export default function Login() {
                   onChange={handleChange}
                   required
                 />
-                <FloatingInput
+                <PasswordInput
                   label="Password"
-                  type="password"
                   name="password"
                   error={errors && errors.password}
                   value={formData.password}

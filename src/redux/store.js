@@ -18,4 +18,3 @@ const store = createStore(
 );
 
 export default store;
-console.log(process.env.NODE_ENV);

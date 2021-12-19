@@ -6,6 +6,7 @@ import useAuthStore from "../../hooks/auth/useAuthStore";
 // components & other assets
 import AuthBanner from "../../components/molecules/AuthBanner";
 import FloatingInput from "../../components/atoms/FloatingInput";
+import PasswordInput from "../../components/atoms/PasswordInput";
 import registerBg from "./register.webp";
 import Logo from "../../components/atoms/Logo";
 
@@ -16,14 +17,22 @@ export default function Register() {
     name: "",
     email: "",
     password: "",
+    passwordConfirm: "",
   });
+  const [passwordConfirmError, setPasswordConfirmError] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const { name, email, password } = formData;
-    // registering new user
-    register({ name, email, password });
+    if (formData.password !== formData.passwordConfirm) {
+      setPasswordConfirmError("Repeat Password must be same with Password");
+    } else {
+      setPasswordConfirmError(null);
+
+      const { name, email, password } = formData;
+      // registering new user
+      register({ name, email, password });
+    }
   };
 
   const handleChange = (e) => {
@@ -68,6 +77,9 @@ export default function Register() {
               </h1>
               <hr />
               <form className="mt-4" onSubmit={handleSubmit}>
+                {errors && (
+                  <div className="alert alert-danger">{errors.other}</div>
+                )}
                 <FloatingInput
                   label="Full Name"
                   type="text"
@@ -87,15 +99,22 @@ export default function Register() {
                   onChange={handleChange}
                   required
                 />
-                <FloatingInput
+                <PasswordInput
                   label="Password"
-                  type="password"
                   name="password"
                   error={errors && errors.password}
                   value={formData.password}
                   onChange={handleChange}
                   minLength="8"
                   maxLength="100"
+                  required
+                />
+                <PasswordInput
+                  label="Repeat Password"
+                  name="passwordConfirm"
+                  error={passwordConfirmError}
+                  value={formData.passwordConfirm}
+                  onChange={handleChange}
                   required
                 />
                 {!isPending && (
