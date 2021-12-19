@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import { HashLoader } from "react-spinners";
 import { authUser } from "./redux/actions/auth";
+import useAuthStore from "./hooks/auth/useAuthStore";
 
 // pages & components
-import Auth from "./middlewares/Auth"; // middleware component
+import AuthRoute from "./middlewares/AuthRoute"; // middleware component
+import AdminRoute from "./middlewares/AdminRoute"; // middleware admin component
 import Navbar from "./components/organisms/Navbar";
 import Landing from "./pages/Landing";
 import Register from "./pages/Register";
@@ -14,9 +16,10 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Posts from "./pages/Posts";
 import NotFound from "./pages/NotFound";
+import Admin from "./pages/Admin";
 
 export default function App() {
-  const { isAuthenticated, authIsReady } = useSelector((state) => state.auth);
+  const { isAuthenticated, authIsReady, role } = useAuthStore();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,7 +31,7 @@ export default function App() {
       {/* jika proses authentikasi belum selesai */}
       {!authIsReady && (
         <div className="loading">
-          <HashLoader color='#371691' size={100} loading={!authIsReady} />
+          <HashLoader color="#371691" size={100} loading={!authIsReady} />
         </div>
       )}
 
@@ -39,53 +42,64 @@ export default function App() {
           <Routes>
             {/* public routes */}
             <Route
-              path='/'
+              path="/"
               element={
-                <Auth isAuthenticated={isAuthenticated}>
+                <AuthRoute isAuthenticated={isAuthenticated}>
                   <Navbar />
                   <Landing />
-                </Auth>
+                </AuthRoute>
               }
             />
             <Route
-              path='/login'
+              path="/login"
               element={
-                <Auth isAuthenticated={isAuthenticated}>
+                <AuthRoute isAuthenticated={isAuthenticated}>
                   <Login />
-                </Auth>
+                </AuthRoute>
               }
             />
             <Route
-              path='/register'
+              path="/register"
               element={
-                <Auth isAuthenticated={isAuthenticated}>
+                <AuthRoute isAuthenticated={isAuthenticated}>
                   <Register />
-                </Auth>
+                </AuthRoute>
               }
             />
 
             {/* private routes */}
             <Route
-              path='/home'
+              path="/home"
               element={
-                <Auth isAuthenticated={isAuthenticated} protect>
+                <AuthRoute isAuthenticated={isAuthenticated} protect>
                   <Navbar />
                   <Home />
-                </Auth>
+                </AuthRoute>
               }
             />
             <Route
-              path='/posts'
+              path="/posts"
               element={
-                <Auth isAuthenticated={isAuthenticated} protect>
+                <AuthRoute isAuthenticated={isAuthenticated} protect>
                   <Navbar />
                   <Posts />
-                </Auth>
+                </AuthRoute>
+              }
+            />
+
+            {/* admin routes */}
+            <Route
+              path="/admin"
+              element={
+                <AdminRoute isAuthenticated={isAuthenticated} role={role}>
+                  <Navbar />
+                  <Admin />
+                </AdminRoute>
               }
             />
 
             {/* 404 routes */}
-            <Route path='*' element={<NotFound />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       )}
