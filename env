@@ -1,1 +1,1 @@
-NODE_ENV=development
+REACT_APP_EXAMPLE=example # access with process.env.REACT_APP_EXAMPLE
