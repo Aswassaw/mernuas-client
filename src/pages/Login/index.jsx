@@ -87,18 +87,36 @@ export default function Login() {
                   onChange={handleChange}
                   required
                 />
-                {!isPending && (
-                  <>
-                    {/* jika proses yang melibatkan login belum selesai */}
-                    {!finished && (
-                      <button className="btn btn-primary">Submit</button>
-                    )}
+                <div className="d-flex align-items-center">
+                  <div>
+                    {!isPending && (
+                      <>
+                        {/* jika proses yang melibatkan login belum selesai */}
+                        {!finished && (
+                          <button className="btn btn-primary">Submit</button>
+                        )}
 
-                    {/* jika proses yang melibatkan login telah selesai dan akan redirect */}
-                    {finished && (
+                        {/* jika proses yang melibatkan login telah selesai dan akan redirect */}
+                        {finished && (
+                          <button
+                            className="btn btn-primary"
+                            style={{ cursor: "not-allowed" }}
+                            disabled
+                          >
+                            <span
+                              className="spinner-border spinner-border-sm"
+                              role="status"
+                              aria-hidden="true"
+                            ></span>{" "}
+                            Redirecting...
+                          </button>
+                        )}
+                      </>
+                    )}
+                    {isPending && (
                       <button
                         className="btn btn-primary"
-                        style={{ cursor: "not-allowed" }}
+                        type="button"
                         disabled
                       >
                         <span
@@ -106,33 +124,14 @@ export default function Login() {
                           role="status"
                           aria-hidden="true"
                         ></span>{" "}
-                        Redirecting...
+                        Loading...
                       </button>
                     )}
-                  </>
-                )}
-                {isPending && (
-                  <button className="btn btn-primary" type="button" disabled>
-                    <span
-                      className="spinner-border spinner-border-sm"
-                      role="status"
-                      aria-hidden="true"
-                    ></span>{" "}
-                    Loading...
-                  </button>
-                )}
-                <button
-                  type="reset"
-                  className="btn btn-danger ms-2"
-                  onClick={() =>
-                    setFormData({
-                      email: "",
-                      password: "",
-                    })
-                  }
-                >
-                  Reset
-                </button>
+                  </div>
+                  <div className="ms-auto">
+                    <Link to="/forgot-password" className="text-decoration-none">Forgot Password?</Link>
+                  </div>
+                </div>
               </form>
             </div>
           </div>

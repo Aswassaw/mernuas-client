@@ -8,7 +8,7 @@ import { createToast } from "../../utils/createToast";
 import { normalizeError } from "../../utils/normalizeError";
 import useAuthStore from "../../hooks/auth/useAuthStore";
 
-export default function Activate() {
+export default function ActivateAccount() {
   const [isPending, setIsPending] = useState(false);
   const { user } = useAuthStore();
   const { token } = useParams();

@@ -56,12 +56,14 @@ export default function Navbar() {
 
                 {/* register nav-link when screen size lg or higher */}
                 <div className="d-none d-lg-block btn btn-sm btn-outline-primary ms-2">
-                  <Menu
-                    title="Create Account"
-                    href="/register"
-                    isActive
-                    button
-                  />
+                  <span className="fs-6">
+                    <Menu
+                      title="Create Account"
+                      href="/register"
+                      isActive
+                      button
+                    />
+                  </span>
                 </div>
                 {/* register nav-link when screen size md or lower */}
                 <div className="d-block d-lg-none">

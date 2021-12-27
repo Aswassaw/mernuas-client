@@ -20,7 +20,7 @@ function PasswordInput({ label, name, error = null, ...rest }) {
             <label for={name}>{label}</label>
           </div>
           <span
-            className="input-group-text"
+            className="input-group-text mini-hide"
             onClick={() => setShow(!show)}
             style={{ cursor: "pointer" }}
           >

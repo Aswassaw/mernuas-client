@@ -13,7 +13,9 @@ import Navbar from "./components/organisms/Navbar";
 import Landing from "./pages/Landing";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import Activate from "./pages/Activate";
+import ActivateAccount from "./pages/Auth/ActivateAccount";
+import ForgotPassword from "./pages/Auth/ForgotPassword";
+import ResetPassword from "./pages/Auth/ResetPassword";
 import Home from "./pages/Home";
 import Posts from "./pages/Posts";
 import Admin from "./pages/Admin";
@@ -67,6 +69,22 @@ export default function App() {
                 </AuthRoute>
               }
             />
+            <Route
+              path="/forgot-password"
+              element={
+                <AuthRoute isAuthenticated={isAuthenticated}>
+                  <ForgotPassword />
+                </AuthRoute>
+              }
+            />
+            <Route
+              path="/reset-password/:token"
+              element={
+                <AuthRoute isAuthenticated={isAuthenticated}>
+                  <ResetPassword />
+                </AuthRoute>
+              }
+            />
 
             {/* private routes */}
             <Route
@@ -92,7 +110,7 @@ export default function App() {
               element={
                 <AuthRoute isAuthenticated={isAuthenticated} protect>
                   <Navbar />
-                  <Activate />
+                  <ActivateAccount />
                 </AuthRoute>
               }
             />
