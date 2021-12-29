@@ -17,7 +17,7 @@ function PasswordInput({ label, name, error = null, ...rest }) {
               placeholder={label}
               {...rest}
             />
-            <label for={name}>{label}</label>
+            <label htmlFor={name}>{label}</label>
           </div>
           <span
             className="input-group-text mini-hide"
@@ -36,7 +36,6 @@ function PasswordInput({ label, name, error = null, ...rest }) {
 
 PasswordInput.propTypes = {
   label: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
 };
 

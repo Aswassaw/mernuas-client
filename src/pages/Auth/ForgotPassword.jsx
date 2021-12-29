@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../../utils/constant";
 import { createToast } from "../../utils/createToast";
@@ -11,7 +11,6 @@ import FloatingInput from "../../components/atoms/FloatingInput";
 
 export default function ForgotPassword() {
   const [isPending, setIsPending] = useState(false);
-  const { token } = useParams();
   const [formData, setFormData] = useState({
     email: "",
   });
@@ -28,7 +27,7 @@ export default function ForgotPassword() {
       },
     };
     // set request body
-    const body = JSON.stringify({ token, email: formData.email });
+    const body = JSON.stringify({ email: formData.email });
 
     try {
       const res = await axios.post(
@@ -38,6 +37,9 @@ export default function ForgotPassword() {
       );
 
       createToast(res.data.msg, "success");
+      setFormData({
+        email: ""
+      })
       setIsPending(false);
     } catch (error) {
       console.error(error);
@@ -82,7 +84,7 @@ export default function ForgotPassword() {
           </div>
           <div className="card mt-5 mx-auto" style={{ maxWidth: "550px" }}>
             <div className="card-body">
-              <h1 className="fs-3">Enter your email</h1>
+              <h1 className="fs-3">Input your email</h1>
               <hr />
               <form onSubmit={handleSubmit}>
                 <FloatingInput
