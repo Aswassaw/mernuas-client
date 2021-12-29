@@ -8,7 +8,13 @@ code {
     monospace;
 }
 
-@media (max-width: 349px) {
+@media (max-width: 425px) {
+  .screen-425-hide {
+    display: none !important;
+  }
+}
+
+@media (max-width: 350px) {
   .mini-hide {
     display: none !important;
   }
@@ -18,7 +24,7 @@ code {
   }
 }
 
-@media (max-width: 324px) {
+@media (max-width: 325px) {
   .super-mini-hide {
     display: none !important;
   }
