@@ -89,7 +89,7 @@ export default function ForgotPassword() {
               <form onSubmit={handleSubmit}>
                 <FloatingInput
                   label="Email"
-                  type="text"
+                  type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
