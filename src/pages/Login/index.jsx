@@ -141,7 +141,7 @@ export default function Login() {
               </form>
             </div>
           </div>
-          <div className="mx-auto mt-2" style={{ maxWidth: "450px" }}>
+          <div className="mx-auto mt-3" style={{ maxWidth: "450px" }}>
             <Google />
           </div>
         </div>

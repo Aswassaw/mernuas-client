@@ -1,12 +1,17 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import axios from "axios";
 import GoogleLogin from "react-google-login";
+import { Navigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import useAuthStore from "../../../hooks/auth/useAuthStore";
 import { API_URL } from "../../../utils/constant";
+import { authUser } from "../../../redux/actions/auth";
 import { createToast } from "../../../utils/createToast";
 import { LOGIN_SUCCESS } from "../../../redux/actions/types";
+import { normalizeError } from "../../../utils/normalizeError";
 
 export default function Google() {
+  const { isAuthenticated } = useAuthStore();
   const dispatch = useDispatch();
 
   const responseGoogle = async (response) => {
@@ -30,17 +35,22 @@ export default function Google() {
         type: LOGIN_SUCCESS,
         payload: res.data.token,
       });
+      dispatch(authUser())
     } catch (error) {
       console.error(error);
 
       if (error.response) {
-        createToast(
-          "Something error, please use another way to login.",
-          "error"
-        );
+        createToast(normalizeError(error.response.data).other, "error");
+      } else {
+        createToast(error.message, "error");
       }
     }
   };
+
+  // jika berhasil terauthentikasi, arahkan ke home
+  if (isAuthenticated) {
+    return <Navigate to="/home" />;
+  }
 
   return (
     <GoogleLogin
