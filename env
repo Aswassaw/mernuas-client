@@ -1,1 +1,2 @@
 REACT_APP_EXAMPLE=example # access with process.env.REACT_APP_EXAMPLE
+REACT_APP_GOOGLE_CLIENT_ID=
