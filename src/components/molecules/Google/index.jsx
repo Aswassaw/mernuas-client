@@ -14,7 +14,7 @@ export default function Google() {
   const { isAuthenticated } = useAuthStore();
   const dispatch = useDispatch();
 
-  const responseGoogle = async (response) => {
+  const responseSuccessGoogle = async (response) => {
     // set request config
     const config = {
       headers: {
@@ -35,7 +35,7 @@ export default function Google() {
         type: LOGIN_SUCCESS,
         payload: res.data.token,
       });
-      dispatch(authUser())
+      dispatch(authUser());
     } catch (error) {
       console.error(error);
 
@@ -47,6 +47,10 @@ export default function Google() {
     }
   };
 
+  const responseFailureGoogle = async (response) => {
+    createToast("Login with google failure", "error");
+  };
+
   // jika berhasil terauthentikasi, arahkan ke home
   if (isAuthenticated) {
     return <Navigate to="/home" />;
@@ -56,8 +60,8 @@ export default function Google() {
     <GoogleLogin
       clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
       buttonText="Login With Google"
-      onSuccess={responseGoogle}
-      onFailure={responseGoogle}
+      onSuccess={responseSuccessGoogle}
+      onFailure={responseFailureGoogle}
       cookiePolicy={`single_host_origin`}
     />
   );
