@@ -9,6 +9,7 @@ import AuthBanner from "../../components/molecules/AuthBanner";
 import loginBg from "./login.webp";
 import Logo from "../../components/atoms/Logo";
 import PasswordInput from "../../components/atoms/PasswordInput";
+import Google from "../../components/molecules/Google";
 
 export default function Login() {
   const { isAuthenticated } = useAuthStore();
@@ -134,6 +135,9 @@ export default function Login() {
                 </div>
               </form>
             </div>
+          </div>
+          <div className="mx-auto mt-2" style={{ maxWidth: "450px" }}>
+            <Google />
           </div>
         </div>
       </div>
