@@ -1,37 +1,45 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import GoogleLogin from "react-google-login";
-import useAuthStore from "../../../hooks/auth/useAuthStore";
 import { API_URL } from "../../../utils/constant";
 import { createToast } from "../../../utils/createToast";
+import { LOGIN_SUCCESS } from "../../../redux/actions/types";
 
 export default function Google() {
+  const dispatch = useDispatch();
+
   const responseGoogle = async (response) => {
-    console.log(response);
-    // // set request config
-    // const config = {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // };
-    // // set request body
-    // const body = JSON.stringify({ tokenId: Response.tokenId });
+    // set request config
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    // set request body
+    const body = JSON.stringify({ tokenId: response.tokenId });
 
-    // try {
-    //   const res = await axios.post(
-    //     API_URL + "/api/auth/login-with-google",
-    //     body,
-    //     config
-    //   );
+    try {
+      const res = await axios.post(
+        API_URL + "/api/auth/login-with-google",
+        body,
+        config
+      );
 
-    //   createToast(res.data.msg, "success");
-    // } catch (error) {
-    //   console.error(error);
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data.token,
+      });
+    } catch (error) {
+      console.error(error);
 
-    //   if (error.response) {
-    //     createToast("Something error, please use another way to login.");
-    //   }
-    // }
+      if (error.response) {
+        createToast(
+          "Something error, please use another way to login.",
+          "error"
+        );
+      }
+    }
   };
 
   return (

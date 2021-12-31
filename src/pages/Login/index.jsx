@@ -130,7 +130,12 @@ export default function Login() {
                     )}
                   </div>
                   <div className="ms-auto">
-                    <Link to="/forgot-password" className="text-decoration-none super-mini-hide">Forgot Password?</Link>
+                    <Link
+                      to="/forgot-password"
+                      className="text-decoration-none super-mini-hide"
+                    >
+                      Forgot Password?
+                    </Link>
                   </div>
                 </div>
               </form>
