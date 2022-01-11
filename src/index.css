@@ -46,3 +46,15 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
+
+.btn-login-reset {
+  border: none;
+  background-color: transparent;
+}
+
+.btn-social-login {
+  border: 1px solid black;
+  display: inline-block;
+  border-radius: 5px;
+  padding: 8px;
+}

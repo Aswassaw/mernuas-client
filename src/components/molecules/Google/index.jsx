@@ -9,6 +9,7 @@ import { authUser } from "../../../redux/actions/auth";
 import { createToast } from "../../../utils/createToast";
 import { LOGIN_SUCCESS } from "../../../redux/actions/types";
 import { normalizeError } from "../../../utils/normalizeError";
+import { FaGoogle } from "react-icons/fa";
 
 export default function Google() {
   const { isAuthenticated } = useAuthStore();
@@ -57,12 +58,19 @@ export default function Google() {
   }
 
   return (
-    <GoogleLogin
-      clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-      buttonText="Login With Google"
-      onSuccess={responseSuccessGoogle}
-      onFailure={responseFailureGoogle}
-      cookiePolicy={`single_host_origin`}
-    />
+    <div className="btn-social-login">
+      <FaGoogle />
+      <GoogleLogin
+        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+        render={(renderProps) => (
+          <button className="btn-login-reset" onClick={renderProps.onClick}>
+            Login With Google
+          </button>
+        )}
+        onSuccess={responseSuccessGoogle}
+        onFailure={responseFailureGoogle}
+        cookiePolicy={`single_host_origin`}
+      />
+    </div>
   );
 }

@@ -10,6 +10,7 @@ import loginBg from "./login.webp";
 import Logo from "../../components/atoms/Logo";
 import PasswordInput from "../../components/atoms/PasswordInput";
 import Google from "../../components/molecules/Google";
+import Github from "../../components/molecules/Github";
 
 export default function Login() {
   const { isAuthenticated } = useAuthStore();
@@ -143,6 +144,9 @@ export default function Login() {
           </div>
           <div className="mx-auto mt-3" style={{ maxWidth: "450px" }}>
             <Google />
+          </div>
+          <div className="mx-auto mt-3" style={{ maxWidth: "450px" }}>
+            <Github />
           </div>
         </div>
       </div>
