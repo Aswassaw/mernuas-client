@@ -16,11 +16,40 @@ export default function Github() {
   const dispatch = useDispatch();
 
   const responseSuccessGithub = async (response) => {
-    console.log(response);
+    // set request config
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    // set request body
+    const body = JSON.stringify({ tokenId: response.code });
+
+    try {
+      const res = await axios.post(
+        API_URL + "/api/auth/login-with-github",
+        body,
+        config
+      );
+
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data.token,
+      });
+      dispatch(authUser());
+    } catch (error) {
+      console.error(error);
+
+      if (error.response) {
+        createToast(normalizeError(error.response.data).other, "error");
+      } else {
+        createToast(error.message, "error");
+      }
+    }
   };
 
   const responseFailureGithub = async (response) => {
-    console.log(response);
+    createToast("Login with github failure", "error");
   };
 
   // jika berhasil terauthentikasi, arahkan ke home
@@ -32,7 +61,7 @@ export default function Github() {
     <div className="btn-social-login">
       <FaGithub />
       <GitHubLogin
-        clientId="c6bda755860672fc7f6f"
+        clientId={process.env.REACT_APP_GITHUB_CLIENT_ID}
         redirectUri=""
         className="btn-login-reset"
         buttonText="Login With Github"
