@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, Navigate } from "react-router-dom";
 import useRegister from "../../hooks/auth/useRegister";
 import useAuthStore from "../../hooks/auth/useAuthStore";
@@ -20,6 +20,10 @@ export default function Register() {
     passwordConfirm: "",
   });
   const [passwordConfirmError, setPasswordConfirmError] = useState(null);
+
+  useEffect(() => {
+    document.title = "Mernuas - Register";
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();

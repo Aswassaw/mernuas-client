@@ -7,6 +7,10 @@ export default function Posts() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    document.title = "Mernuas - Posts";
+  }, []);
+
+  useEffect(() => {
     setLoading(true);
 
     async function fetchPosts() {

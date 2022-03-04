@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams, Navigate } from "react-router-dom";
 import axios from "axios";
@@ -13,6 +13,10 @@ export default function ActivateAccount() {
   const { user } = useAuthStore();
   const { token } = useParams();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    document.title = "Mernuas - Activate Account";
+  }, []);
 
   const activateAccount = async () => {
     setIsPending(true);

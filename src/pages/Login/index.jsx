@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, Navigate } from "react-router-dom";
 import useLogin from "../../hooks/auth/useLogin";
 import useAuthStore from "../../hooks/auth/useAuthStore";
@@ -19,6 +19,10 @@ export default function Login() {
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    document.title = "Mernuas - Login";
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();

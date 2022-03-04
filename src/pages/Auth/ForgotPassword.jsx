@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../../utils/constant";
@@ -14,6 +14,10 @@ export default function ForgotPassword() {
   const [formData, setFormData] = useState({
     email: "",
   });
+
+  useEffect(() => {
+    document.title = "Mernuas - Forgot Password";
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

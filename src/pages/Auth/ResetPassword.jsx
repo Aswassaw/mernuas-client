@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 
 // components & other assets
@@ -12,6 +12,10 @@ export default function ResetPassword() {
   const [formData, setFormData] = useState({
     password: "",
   });
+
+  useEffect(() => {
+    document.title = "Mernuas - Reset Password";
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
