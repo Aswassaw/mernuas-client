@@ -59,6 +59,7 @@ export default function Facebook() {
       <FacebookLogin
         appId={process.env.REACT_APP_FACEBOOK_CLIENT_ID}
         callback={responseSuccessFacebook}
+        disableMobileRedirect={true}
         render={(renderProps) => (
           <button className="btn-login-reset" onClick={renderProps.onClick}>
             Login With Facebook
