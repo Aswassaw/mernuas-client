@@ -16,6 +16,11 @@ export default function Facebook() {
   const dispatch = useDispatch();
 
   const responseSuccessFacebook = async (response) => {
+    if (response.status === "unknown") {
+      createToast("Login with facebook failure", "error");
+      return;
+    }
+
     // set request config
     const config = {
       headers: {
@@ -23,7 +28,10 @@ export default function Facebook() {
       },
     };
     // set request body
-    const body = JSON.stringify({ accessToken: response.accessToken, userID: response.userID });
+    const body = JSON.stringify({
+      accessToken: response.accessToken,
+      userID: response.userID,
+    });
 
     try {
       const res = await axios.post(
